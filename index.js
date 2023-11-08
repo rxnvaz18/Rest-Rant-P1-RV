@@ -13,7 +13,7 @@ app.use('/places', require('./controllers/places'))
 app.get('/', (req, res) => {
     // This gets sent to the client 
     // (your web browser most likely!)
-    res.send('Hello world!')
+    res.send('I Awake')
 })
 // Listen for connections.
 app.get('*', (req, res) => {
