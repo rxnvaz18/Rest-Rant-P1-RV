@@ -10,13 +10,20 @@ const app = express()
 
 // code for requiring use of places.js router
 
+// code added in part 3 to define the view engine
+
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+
 app.use('/places', require('./controllers/places'))
 
 // Create a homepage route.
 
+// in part 3 we changed res.send to res.render 'home' so that the client can see your homepage layout
 app.get('/', (req, res) => {
 
-    res.send('I Am Awake')}
+    res.render('home')}
 )    
 // This gets sent to the client 
     // (your web browser most likely!)
