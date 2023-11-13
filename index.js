@@ -29,7 +29,9 @@ app.get('/', (req, res) => {
     // (your web browser most likely!)
 // Listen for connections.
 
+// in part3 added 404 file under views and changed res.send to res.render to error404 file created
 app.get('*', (req, res) => {
-    res.status(404).send("<h1>404 Page</h1>")
+    res.render('error404')
 })
+
 app.listen(process.env.PORT) 
