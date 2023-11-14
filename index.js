@@ -22,7 +22,6 @@ app.use('/places', require('./controllers/places'))
 
 // in part 3 we changed res.send to res.render 'home' so that the client can see your homepage layout
 app.get('/', (req, res) => {
-
     res.render('home')}
 )    
 // This gets sent to the client 
