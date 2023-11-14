@@ -7,35 +7,35 @@ router.get('/', (req, res) => {
         city: 'Salt Lake City',
         state: 'UT',
         cuisines: 'Chinese',
-        pic: 'http://placekitten.com/250/250'
+        pic: './images/chinese.jpg'
       }, 
       {
         name: 'Urban Spice Grill',
         city: 'Los Angeles',
         state: 'CA',
         cuisines: 'Burgers and Hot Dogs',
-        pic: 'http://placekitten.com/250/250'
+        pic: './images/burgers.jpg'
       },
       {
         name: 'Culinary Oasis',
         city: 'Las Vegas',
         state: 'NV',
         cuisines: 'Plant-Based Mediterranean',
-        pic: 'http://placekitten.com/250/250'
+        pic: './images/medlounge.jpg'
       },
       {
         name: 'Fusion Bites Lounge',
         city: 'Seattle',
         state: 'WA',
         cuisines: 'Korean/Mexican Fusion',
-        pic: 'http://placekitten.com/250/250'
+        pic: './images/kmex.jpg'
       },
       {
         name: 'Tantalizing Tastes Tavern',
         city: 'San Diego',
         state: 'CA',
         cuisines: 'English/Indian Fusion',
-        pic: 'http://placekitten.com/250/250'
+        pic: './images/pub.jpg'
       }
     ]
       

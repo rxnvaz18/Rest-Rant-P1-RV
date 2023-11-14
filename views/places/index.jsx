@@ -14,7 +14,7 @@ function index (data) {
         <Def>
             <main>
                 <h1>
-                    PLACES INDEX PAGE
+                    Places to Rant About
                 </h1>
                 {placesFormatted}
             </main>
