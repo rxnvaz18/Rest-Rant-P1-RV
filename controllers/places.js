@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
       }
     ]
       
-    res.render('places/index')
+    res.render('places/index', {places})
 })
 
 module.exports = router
