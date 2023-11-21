@@ -47,8 +47,18 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.body)
-  res.send('POST /places')
+  if (!req.body.pic) {
+    // setting the default image for when the user does not provide one
+    req.body.pic ="./images/happyeater.jpg"
+  }
+  if(!req.body.city) {
+    req.body.city = "Local Town"
+  }
+  if(!req.body.state) {
+    req.body.state = "USA"
+  }
+  places.push(req.body)
+  res.redirect('/places')
 })
 
 module.exports = router
