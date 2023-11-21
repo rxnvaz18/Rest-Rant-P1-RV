@@ -3,7 +3,7 @@ const router = require('express').Router()
 const places = require('../models/places.js')
 
 router.get('/:id/edit', (req, res) => {
-  let id = Number {req.params.id}
+  let id = Number(req.params.id)
   if (isNaN(id)) {
     res.render('error404')
   }
