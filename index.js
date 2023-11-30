@@ -3,6 +3,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const methodOverride = require('method-override')
 
 // Initialize the app object.
 
@@ -17,6 +18,7 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use('/places', require('./controllers/places'))
+app.use(methodOverride('_method'))
 
 // Create a homepage route.
 
