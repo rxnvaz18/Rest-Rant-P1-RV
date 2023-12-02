@@ -2,82 +2,6 @@ const router = require('express').Router()
 // more code to be added
 const places = require('../models/places.js')
 
-router.get('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-    res.render('error404')
-  }
-  else if (!places[id]) {
-    res.render('error404')
-  }
-  else {
-    res.render('places/show', {place: places[id] })
-  }
-  
-})
-
-
-
-
-router.get('/:id/edit', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-    res.render('error404')
-  }
-  else if (!places[id]) {
-    res.render('error404')
-  }
-  else {
-    res.render('places/edit', { place: places[id] })
-  }
-  res.render('places/edit')
-})
-
-router.get('/new', (req, res) => {
-  res.render('places/new')
-})
-
-router.get('/', (req, res) => {
-    let places = [{
-        name: 'Savory Haven',
-        city: 'Salt Lake City',
-        state: 'UT',
-        cuisines: 'Chinese',
-        pic: './images/chinese.jpg'
-      }, 
-      {
-        name: 'Urban Spice Grill',
-        city: 'Los Angeles',
-        state: 'CA',
-        cuisines: 'Burgers and Hot Dogs',
-        pic: './images/burgers.jpg'
-      },
-      {
-        name: 'Culinary Oasis',
-        city: 'Las Vegas',
-        state: 'NV',
-        cuisines: 'Plant-Based Mediterranean',
-        pic: './images/medlounge.jpg'
-      },
-      {
-        name: 'Fusion Bites Lounge',
-        city: 'Seattle',
-        state: 'WA',
-        cuisines: 'Korean/Mexican Fusion',
-        pic: './images/kmex.jpg'
-      },
-      {
-        name: 'Tantalizing Tastes Tavern',
-        city: 'San Diego',
-        state: 'CA',
-        cuisines: 'English/Indian Fusion',
-        pic: './images/pub.jpg'
-      }
-    ]
-      
-    res.render('places/index', {places})
-})
-
 router.post('/', (req, res) => {
   if (!req.body.pic) {
     // setting the default image for when the user does not provide one
@@ -92,5 +16,96 @@ router.post('/', (req, res) => {
   places.push(req.body)
   res.redirect('/places')
 })
+
+router.get('/', (req, res) => {
+  res.render('places/index', { places })
+})
+
+router.get('/new', (req, res) => {
+  res.render('places/new')
+});
+
+router.get('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.render('places/show', { place: places[id], id })
+  }
+})
+
+router.delete('/places/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+      res.render('error404')
+  } else if (!places[id]) {
+      res.render('error404')
+  } else {
+      places.splice(i, 1)
+      res.redirect('/places')
+  }
+})
+
+
+// router.get('/:id/edit', (req, res) => {
+//   let id = Number(req.params.id)
+//   if (isNaN(id)) {
+//     res.render('error404')
+//   }
+//   else if (!places[id]) {
+//     res.render('error404')
+//   }
+//   else {
+//     res.render('places/edit', { place: places[id] })
+//   }
+//   res.render('places/edit')
+// })
+
+
+
+// router.get('/', (req, res) => {
+//     let places = [{
+//         name: 'Savory Haven',
+//         city: 'Salt Lake City',
+//         state: 'UT',
+//         cuisines: 'Chinese',
+//         pic: './images/chinese.jpg'
+//       }, 
+//       {
+//         name: 'Urban Spice Grill',
+//         city: 'Los Angeles',
+//         state: 'CA',
+//         cuisines: 'Burgers and Hot Dogs',
+//         pic: './images/burgers.jpg'
+//       },
+//       {
+//         name: 'Culinary Oasis',
+//         city: 'Las Vegas',
+//         state: 'NV',
+//         cuisines: 'Plant-Based Mediterranean',
+//         pic: './images/medlounge.jpg'
+//       },
+//       {
+//         name: 'Fusion Bites Lounge',
+//         city: 'Seattle',
+//         state: 'WA',
+//         cuisines: 'Korean/Mexican Fusion',
+//         pic: './images/kmex.jpg'
+//       },
+//       {
+//         name: 'Tantalizing Tastes Tavern',
+//         city: 'San Diego',
+//         state: 'CA',
+//         cuisines: 'English/Indian Fusion',
+//         pic: './images/pub.jpg'
+//       }
+//     ]
+      
+//     res.render('places/index', {places})
+// })
 
 module.exports = router

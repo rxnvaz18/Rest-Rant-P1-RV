@@ -21,7 +21,6 @@ app.use('/places', require('./controllers/places'))
 app.use(methodOverride('_method'))
 
 // Create a homepage route.
-
 // in part 3 we changed res.send to res.render 'home' so that the client can see your homepage layout
 app.get('/', (req, res) => {
     res.render('home')}
