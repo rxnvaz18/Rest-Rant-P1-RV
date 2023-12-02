@@ -54,9 +54,6 @@ router.get('/:id/edit', (req, res) => {
   res.send('GET edit form stub')
 })
 
-router.post('/:id/rant', (req, res) => {
-  res.send('GET /places/:id/rant stub')
-})
 
 router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
