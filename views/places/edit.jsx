@@ -12,7 +12,8 @@ function edit_form (data) {
                         <label htmlFor='name'>
                             Place Name
                         </label>
-                        <input className="form-control" 
+                        <input 
+                        className="form-control" 
                         id="name" 
                         name="name" 
                         value={data.place.name}
