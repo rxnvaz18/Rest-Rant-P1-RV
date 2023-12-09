@@ -2,10 +2,20 @@ const React = require('react')
 const Def = require('../default')
 
 function show (data) {
-  let comments = (
-    <h3 className='inactive'>No comments yet!</h3>
-  )
+  let comments = <h3 className='inactive'>No comments yet!</h3>
+  let rating = <h3 className='inactive'>Not Yet Rated</h3>
+  
   if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = Math.round(sumRatings / data.place.comments.length)
+    let stars = ""
+    for (let i = 0; i < averageRating; i++) {
+      stars += "⭐️";
+    }
+    rating = <h3>{stars}</h3>
+    
     comments = data.place.comments.map(c => {
       return (
         <div className='border'>
@@ -26,17 +36,15 @@ function show (data) {
               <div className="col-sm-6">
             <img src={data.place.pic} alt={data.place.name}/>
             </div>
+            <h2>Rating</h2>
+            {rating}
+            <br />
               <h3>Located in {data.place.city}, {data.place.state}</h3>
-              
               <div className="col-sm-6">
                 <h2>Description</h2>
                 <h3>{data.place.showEstablished()}</h3>
                 <h4>Serving {data.place.cuisine}</h4>
-            </div></div>
-
-            <div>
-              <h2>Rating</h2>
-              <p>Currently unrated</p>
+            </div>
             </div>
             <div>
               <h2>Comments</h2>
@@ -49,7 +57,7 @@ function show (data) {
                         Delete
                   </button>
               </form> 
-              <h2>Need to Rant or Rave about a place?</h2>
+              <h2>Need to Rant or Rave about a Place?</h2>
             <form action={`/places/${data.place.id}/comment`} method="POST">
               <div className="row">
                 <div className="form-group col-sm-12">

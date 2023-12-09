@@ -29,7 +29,6 @@ router.post('/', (req, res) => {
 
 // COMMENTS
 router.post('/:id/comment', (req, res) => {
-  console.log(req.body)
   req.body.rant = req.body.rant ? true : false
   db.Place.findById(req.params.id)
   .then(place => {
@@ -47,6 +46,9 @@ router.post('/:id/comment', (req, res) => {
   })
   .catch(err => {
       res.render('error404')
+  })
+  .catch(err => {
+    res.render('error404')
   })
 })
 
