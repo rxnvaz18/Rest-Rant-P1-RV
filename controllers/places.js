@@ -1,5 +1,4 @@
 const router = require('express').Router()
-
 const db = require('../models')
 
 // INDEX
@@ -17,7 +16,8 @@ router.get('/', (req, res) => {
 // CREATE
 router.post('/', (req, res) => {
   db.Place.create(req.body)
-  .then(() => {
+  .then((s) => {
+    console.log(s)
     res.redirect('/places')
   })
   .catch(err => {
