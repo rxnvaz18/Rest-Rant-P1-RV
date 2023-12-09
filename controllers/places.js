@@ -94,7 +94,7 @@ router.get("/:id/edit", (req, res) => {
         res.render("places/edit", { place });
       })
       .catch((err) => {
-        console.log("err", err);
+        console.log("err", err);  
         res.render("error404");
       });
   });
