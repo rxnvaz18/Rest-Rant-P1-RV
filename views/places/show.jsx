@@ -2,8 +2,8 @@ const React = require('react')
 const Def = require('../default')
 
 function show (data) {
-  let comments = <h3 className='inactive'>No comments yet!</h3>
-  let rating = <h3 className='inactive'>Not Yet Rated</h3>
+  let comments = (<h3 className='inactive'>No comments yet!</h3>)
+  let rating = (<h3 className='inactive'>Not Yet Rated</h3>)
   
   if (data.place.comments.length) {
     let sumRatings = data.place.comments.reduce((tot, c) => {

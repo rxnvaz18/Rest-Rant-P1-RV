@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const db = require('../models')
-const comment = require('../models/comment')
+// const comment = require('../models/comment')
 
 // INDEX
 router.get('/', (req, res) => {
@@ -61,7 +61,7 @@ router.get('/new', (req, res) => {
 
 // SHOW
 router.get('/:id', (req, res) => {
-  db.Place.findById(req.params.id)
+  db.Place.findOne({ _id: req.params.id})
   .populate('comments')
   .then((place) => {
     console.log(place.comments)
@@ -76,10 +76,10 @@ router.get('/:id', (req, res) => {
 // UPDATE
 router.put("/:id", (req, res) => {
   console.log(req.params.id);
-  db.Place.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  db.Place.findByIdAndUpdate(req.params.id, req.body)
     .then(
       () => {
-        res.redirect(`/places/${req.params.id}`);
+        res.redirect(`/places/${req.params.id}`)
       })
     .catch((err) => {
       console.log("err", err);
@@ -90,10 +90,10 @@ router.put("/:id", (req, res) => {
 // EDIT
 router.get("/:id/edit", (req, res) => {
     db.Place.findById(req.params.id)
-      .then((place) => {
+      .then(place => {
         res.render("places/edit", { place });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("err", err);  
         res.render("error404");
       });
@@ -102,12 +102,11 @@ router.get("/:id/edit", (req, res) => {
 
 // DELETE
 router.delete("/:id", (req, res) => {
-    db.Place.
-      findByIdAndDelete(req.params.id)
-      .then(() => {
-        res.redirect("/places");
+    db.Place.findByIdAndDelete(req.params.id)
+      .then(place => {
+        res.redirect("/places")
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("err", err);
         res.render("error404");
       });
@@ -115,6 +114,8 @@ router.delete("/:id", (req, res) => {
 
 
 module.exports = router
+
+
 // const places = require('../models/places')
 // Rest Rant part 8 had you delete the routes and go back to stub routes for mongo
 // router.post('/', (req, res) => {
